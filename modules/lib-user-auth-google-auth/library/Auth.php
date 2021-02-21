@@ -2,7 +2,7 @@
 /**
  * Auth
  * @package lib-user-auth-google-auth
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 namespace LibUserAuthGoogleAuth\Library;
@@ -24,7 +24,7 @@ class Auth
         return self::$g;
     }
 
-    private static function getUserSecret(object $user): string
+    public static function getUserSecret(object $user): string
     {
         $d_secret = GoogleAuth::getOne(['user' => $user->id]);
         if($d_secret)
