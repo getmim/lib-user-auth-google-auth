@@ -2,7 +2,7 @@
 /**
  * Auth
  * @package lib-user-auth-google-auth
- * @version 0.0.2
+ * @version 0.1.0
  */
 
 namespace LibUserAuthGoogleAuth\Library;
@@ -44,6 +44,11 @@ class Auth
         $g = self::getGAuth();
         $secret = self::getUserSecret($user);
         $issuer = \Mim::$app->config->name;
+
+        if(isset($user->email))
+            $issuer.= '(' . $user->email .')';
+        else
+            $issuer.= '(' . $user->name .')';
 
         return GoogleQrUrl::generate($user->id, $secret, $issuer);
     }
